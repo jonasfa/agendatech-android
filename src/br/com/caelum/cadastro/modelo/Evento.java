@@ -62,7 +62,7 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		return nome;
+		return data + " - " + nome;
 	}
 
 	public String toJSON() throws JSONException {

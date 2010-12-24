@@ -1,6 +1,7 @@
 package br.com.caelum.cadastro;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 import br.com.caelum.cadastro.modelo.Evento;
 
 public class Formulario extends Activity{
@@ -33,9 +35,17 @@ public class Formulario extends Activity{
 				evento.setData(data.getDayOfMonth()+"/"+data.getMonth()+"/"+data.getYear());
 				evento.setEstado(estado.getEditableText().toString());
 
-//				AlunoDAO dao = new AlunoDAO(Formulario.this);
-//				dao.adicionar(aluno);
-//				dao.close() ;
+				final ProgressDialog progress = ProgressDialog.show(
+						Formulario.this, "Aguarde...",
+						"Enviando dados para a web...", true);
+
+				final Toast aviso = Toast.makeText(Formulario.this,
+						"Seu evento aparecer‡ na lista em breve!", Toast.LENGTH_LONG);
+
+				
+				
+				Sincronismo sincronismo = new Sincronismo();
+				sincronismo.enviarDado(evento);
 
 				startActivity(new Intent(Formulario.this, ListaEventos.class));
 			}

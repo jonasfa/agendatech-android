@@ -40,6 +40,10 @@ public class EventoParser {
 				evento.setNome(new JSONObject(nomeJ.getString("evento"))
 						.getString("nome"));
 
+				String data = new JSONObject(nomeJ.getString("evento"))
+						.getString("data");
+				evento.setData(data.substring(8, 10) + "/"
+						+ data.substring(5, 7));
 				eventos.add(evento);
 
 			} catch (JSONException e) {
