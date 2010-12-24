@@ -1,18 +1,11 @@
 package br.com.caelum.cadastro;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
-
-import org.apache.http.client.ClientProtocolException;
-import org.json.JSONException;
-import org.json.JSONStringer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -24,7 +17,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import br.com.caelum.cadastro.modelo.Aluno;
 import br.com.caelum.cadastro.modelo.Evento;
 import br.com.caelum.cadastro.parser.EventoParser;
 

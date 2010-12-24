@@ -20,11 +20,11 @@ public final class R {
         public static final int TextView05=0x7f050009;
         public static final int botao=0x7f05000b;
         public static final int botaoImagem=0x7f050000;
-        public static final int editEndereco=0x7f050006;
+        public static final int editData=0x7f05000a;
+        public static final int editDescricao=0x7f050004;
+        public static final int editEstado=0x7f050006;
         public static final int editNome=0x7f050002;
-        public static final int editNota=0x7f05000a;
         public static final int editSite=0x7f050008;
-        public static final int editTelefone=0x7f050004;
         public static final int listaEventos=0x7f05000c;
         public static final int nome=0x7f050001;
     }

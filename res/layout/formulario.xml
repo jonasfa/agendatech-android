@@ -4,40 +4,49 @@
 	android:layout_height="fill_parent">
 	<ScrollView android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
+		
 		<LinearLayout android:orientation="vertical"
 			android:layout_width="fill_parent" android:layout_height="fill_parent">
+		
 			<ImageButton android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:background="@drawable/icon"
 				android:layout_gravity="center_horizontal" android:id="@+id/botaoImagem" />
+			
+	
+			
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="fill_parent" android:id="@+id/nome"
 				android:text="Nome:" />
 			<EditText android:layout_height="wrap_content"
 				android:layout_width="fill_parent" android:hint="Digite o nome"
 				android:id="@+id/editNome" />
+			
 			<TextView android:id="@+id/TextView02"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
-				android:text="Telefone:" />
+				android:text="Decricao:" />
 			<EditText android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:hint="Digite o telefone"
-				android:id="@+id/editTelefone" />
+				android:layout_width="fill_parent" android:hint="Digite a descricao"
+				android:id="@+id/editDescricao" />
+			
 			<TextView android:id="@+id/TextView03"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
-				android:text="Endereço:" />
+				android:text="Estado:" />
 			<EditText android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:id="@+id/editEndereco"
-				android:hint="Digite o endereço" />
+				android:layout_width="fill_parent" android:id="@+id/editEstado"
+				android:hint="Digite o estado" />
+			
 			<TextView android:id="@+id/TextView04"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:text="Site:" />
 			<EditText android:layout_height="wrap_content"
 				android:layout_width="fill_parent" android:hint="Digite o site"
 				android:id="@+id/editSite" />
+				
 			<TextView android:id="@+id/TextView05"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
-				android:text="Nota:" />
-			<RatingBar android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:id="@+id/editNota" />
+				android:text="Data:" />
+			<DatePicker android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/editData" />
 			<Button android:layout_height="wrap_content"
 				android:layout_width="fill_parent" android:text="Inserir"
 				android:id="@+id/botao" />
