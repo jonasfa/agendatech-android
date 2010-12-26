@@ -39,15 +39,15 @@ public class Formulario extends Activity{
 						Formulario.this, "Aguarde...",
 						"Enviando dados para a web...", true);
 
-				final Toast aviso = Toast.makeText(Formulario.this,
-						"Seu evento aparecer‡ na lista em breve!", Toast.LENGTH_LONG);
+				Toast.makeText(Formulario.this,
+						"Seu evento aparecer‡ na lista em breve!", Toast.LENGTH_LONG).show();
 
 				
 				
 				Sincronismo sincronismo = new Sincronismo();
 				sincronismo.enviarDado(evento);
 
-				startActivity(new Intent(Formulario.this, ListaEventos.class));
+				finish();
 			}
 		});
 	}
