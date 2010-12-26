@@ -69,14 +69,4 @@ public class ListaEventos extends ListActivity {
 
 		return false;
 	}
-
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-	}
-
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		return super.onContextItemSelected(item);
-	}
 }
