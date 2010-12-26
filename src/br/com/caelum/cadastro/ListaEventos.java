@@ -3,7 +3,9 @@ package br.com.caelum.cadastro;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,12 +27,12 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lista);
 
-		List<Evento> eventos = new EventoParser().parse();
-		
-		setListAdapter(new ArrayAdapter<Evento>(this,
-				android.R.layout.simple_list_item_1, eventos));
-
 		getListView().setOnItemLongClickListener(this);
+		
+		// para a mensagem não ser exibida enquanto a lista é carregada
+		findViewById(android.R.id.empty).setVisibility(View.GONE);
+
+		new CarregarListaTask().execute();
 	}
 	
 	@Override
@@ -62,5 +64,27 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 		}
 
 		return false;
+	}
+	
+	private class CarregarListaTask extends AsyncTask<Object, Object, List<Evento>> {
+		ProgressDialog progress;
+
+		@Override
+		protected void onPreExecute() {
+			progress = ProgressDialog.show(ListaEventos.this, "Aguarde...",
+					"Carregando lista de eventos...", true);
+		}
+
+		@Override
+		protected List<Evento> doInBackground(Object... params) {
+			return new EventoParser().parse();
+		}
+
+		@Override
+		protected void onPostExecute(List<Evento> eventos) {
+			setListAdapter(new ArrayAdapter<Evento>(ListaEventos.this,
+					android.R.layout.simple_list_item_1, eventos));
+			progress.dismiss();
+		}
 	}
 }
