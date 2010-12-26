@@ -25,7 +25,6 @@ public final class R {
         public static final int editEstado=0x7f050006;
         public static final int editNome=0x7f050002;
         public static final int editSite=0x7f050008;
-        public static final int listaEventos=0x7f05000c;
         public static final int nome=0x7f050001;
     }
     public static final class layout {

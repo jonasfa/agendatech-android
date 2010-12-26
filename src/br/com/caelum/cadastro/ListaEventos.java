@@ -2,7 +2,7 @@ package br.com.caelum.cadastro;
 
 import java.util.List;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 import br.com.caelum.cadastro.modelo.Evento;
 import br.com.caelum.cadastro.parser.EventoParser;
 
-public class ListaEventos extends Activity {
+public class ListaEventos extends ListActivity {
 	
 	
 	/** Called when the activity is first created. */
@@ -33,30 +32,26 @@ public class ListaEventos extends Activity {
 		ArrayAdapter<Evento> adapter = new ArrayAdapter<Evento>(this,
 				android.R.layout.simple_list_item_1, eventos);
 
-		ListView EventosAlunos = (ListView) findViewById(R.id.listaEventos);
-		EventosAlunos.setAdapter(adapter);
+		setListAdapter(adapter);
 
-		EventosAlunos.setClickable(true);
-		EventosAlunos.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> adapter, View view,
-					int posicao, long id) {
-				Toast.makeText(ListaEventos.this,
-						"Posi��o selecionada:" + posicao, Toast.LENGTH_LONG)
-						.show();
-			}
-		});
-
-		EventosAlunos.setLongClickable(true);
-		registerForContextMenu(EventosAlunos);
-		EventosAlunos.setOnItemLongClickListener(new OnItemLongClickListener() {
+		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapter, View view,
 					int position, long id) {
-				return false;
+				Toast.makeText(ListaEventos.this,
+						"Posição segurada:" + position, Toast.LENGTH_LONG)
+						.show();
+				return true;
 			}
 		});
 
+	}
+	
+	@Override
+	public void onListItemClick(ListView listView, View view, int position, long id) {
+		Toast.makeText(ListaEventos.this,
+				"Posição selecionada:" + position, Toast.LENGTH_LONG)
+				.show();
 	}
 
 	@Override
