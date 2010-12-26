@@ -17,8 +17,8 @@ import br.com.caelum.cadastro.modelo.Evento;
 import br.com.caelum.cadastro.parser.EventoParser;
 
 public class ListaEventos extends ListActivity implements OnItemLongClickListener {
-	
-	
+	private static final int MENU_NOVO = 0;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,15 +50,15 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuItem novoAluno = menu.add(0, 0, 0, "Cadastrar Evento");
-		novoAluno.setIcon(R.drawable.icon);
+		menu.add(0, MENU_NOVO, 0, "Cadastrar Evento").setIcon(R.drawable.icon);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == 0) {
+		if (item.getItemId() == MENU_NOVO) {
 			startActivity(new Intent(this, Formulario.class));
+			return true;
 		}
 
 		return false;
