@@ -5,8 +5,6 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +16,7 @@ import android.widget.Toast;
 import br.com.caelum.cadastro.modelo.Evento;
 import br.com.caelum.cadastro.parser.EventoParser;
 
-public class ListaEventos extends ListActivity {
+public class ListaEventos extends ListActivity implements OnItemLongClickListener {
 	
 	
 	/** Called when the activity is first created. */
@@ -29,22 +27,10 @@ public class ListaEventos extends ListActivity {
 
 		List<Evento> eventos = new EventoParser().parse();
 		
-		ArrayAdapter<Evento> adapter = new ArrayAdapter<Evento>(this,
-				android.R.layout.simple_list_item_1, eventos);
+		setListAdapter(new ArrayAdapter<Evento>(this,
+				android.R.layout.simple_list_item_1, eventos));
 
-		setListAdapter(adapter);
-
-		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
-			@Override
-			public boolean onItemLongClick(AdapterView<?> adapter, View view,
-					int position, long id) {
-				Toast.makeText(ListaEventos.this,
-						"Posição segurada:" + position, Toast.LENGTH_LONG)
-						.show();
-				return true;
-			}
-		});
-
+		getListView().setOnItemLongClickListener(this);
 	}
 	
 	@Override
@@ -52,6 +38,14 @@ public class ListaEventos extends ListActivity {
 		Toast.makeText(ListaEventos.this,
 				"Posição selecionada:" + position, Toast.LENGTH_LONG)
 				.show();
+	}
+	
+	@Override
+	public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
+		Toast.makeText(ListaEventos.this,
+				"Posição segurada:" + position, Toast.LENGTH_LONG)
+				.show();
+		return true;
 	}
 
 	@Override
