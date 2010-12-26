@@ -2,7 +2,7 @@ package br.com.caelum.cadastro;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,20 +35,33 @@ public class Formulario extends Activity{
 				evento.setData(data.getDayOfMonth()+"/"+data.getMonth()+"/"+data.getYear());
 				evento.setEstado(estado.getEditableText().toString());
 
-				final ProgressDialog progress = ProgressDialog.show(
-						Formulario.this, "Aguarde...",
-						"Enviando dados para a web...", true);
-
-				Toast.makeText(Formulario.this,
-						"Seu evento aparecerá na lista em breve!", Toast.LENGTH_LONG).show();
-
-				
-				
-				Sincronismo sincronismo = new Sincronismo();
-				sincronismo.enviarDado(evento);
-
-				finish();
+				new EnviarTask().execute(evento); // Envia o evento em outra thread
 			}
 		});
+	}
+	
+	private class EnviarTask extends AsyncTask<Evento, Object, Object> {
+		ProgressDialog progress;
+		
+		@Override
+		protected void onPreExecute() {
+			progress = ProgressDialog.show(Formulario.this, "Aguarde...",
+					"Enviando dados para a web...", true);
+		}
+
+		@Override
+		protected Object doInBackground(Evento... params) {
+			new Sincronismo().enviarDado(params[0]);
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Object result) {
+			progress.dismiss();
+			Toast.makeText(Formulario.this,
+					"Seu evento aparecer√° na lista em breve!",
+					Toast.LENGTH_LONG).show();
+			finish();
+		}
 	}
 }
