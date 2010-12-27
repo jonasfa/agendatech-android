@@ -38,21 +38,21 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id) {
 		Toast.makeText(ListaEventos.this,
-				"Posi√ß√£o selecionada:" + position, Toast.LENGTH_LONG)
+				"Aguarde próximas versões do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
 				.show();
 	}
 	
 	@Override
 	public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
 		Toast.makeText(ListaEventos.this,
-				"Posi√ß√£o segurada:" + position, Toast.LENGTH_LONG)
+				"Aguarde próximas versões do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
 				.show();
 		return true;
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, MENU_NOVO, 0, "Cadastrar Evento").setIcon(R.drawable.icon);
+		menu.add(0, MENU_NOVO, 0, "Cadastrar Evento").setIcon(R.drawable.mais);
 		return true;
 	}
 

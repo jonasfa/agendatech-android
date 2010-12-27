@@ -59,7 +59,7 @@ public class Formulario extends Activity{
 		protected void onPostExecute(Object result) {
 			progress.dismiss();
 			Toast.makeText(Formulario.this,
-					"Seu evento aparecer√° na lista em breve!",
+					"Seu evento aparecerá° na lista em breve!",
 					Toast.LENGTH_LONG).show();
 			finish();
 		}
