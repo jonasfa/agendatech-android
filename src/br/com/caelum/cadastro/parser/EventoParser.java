@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import br.com.caelum.cadastro.Sincronismo;
+import br.com.agendatech.cadastro.Sincronismo;
 import br.com.caelum.cadastro.modelo.Evento;
 
 public class EventoParser {

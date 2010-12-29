@@ -1,4 +1,4 @@
-package br.com.caelum.cadastro;
+package br.com.agendatech.cadastro;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

@@ -1,4 +1,4 @@
-package br.com.caelum.cadastro;
+package br.com.agendatech.cadastro;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,9 +19,12 @@ import br.com.caelum.cadastro.modelo.Evento;
 
 public class Sincronismo {
 
-	private String novoEvento = "http://10.0.2.2:3000/mobile/novo_evento?";
-	private String buscaEventos = "http://10.0.2.2:3000/mobile/eventos";
+//	private String novoEvento = "http://10.0.2.2:3000/mobile/novo_evento?";
+//	private String buscaEventos = "http://10.0.2.2:3000/mobile/eventos";
 
+	private String novoEvento = "http://www.agendatech.com.br/mobile/novo_evento?";
+	private String buscaEventos = "http://www.agendatech.com.br/mobile/eventos";
+	
 	public String buscaEventos() {
 				
 		HttpClient httpclient = new DefaultHttpClient();
