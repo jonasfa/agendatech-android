@@ -1,6 +1,9 @@
 package br.com.agendatech.cadastro;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONException;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -14,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import br.com.caelum.cadastro.modelo.Evento;
 import br.com.caelum.cadastro.parser.EventoParser;
@@ -68,6 +72,7 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 	
 	private class CarregarListaTask extends AsyncTask<Object, Object, List<Evento>> {
 		ProgressDialog progress;
+		private boolean retrive = false;
 
 		@Override
 		protected void onPreExecute() {
@@ -77,7 +82,13 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 		@Override
 		protected List<Evento> doInBackground(Object... params) {
-			return new EventoParser().parse();
+			try {
+				retrive = true;
+				return new EventoParser().parse();
+			} catch (JSONException e) {
+				retrive = false;
+				return new ArrayList<Evento>();
+			}
 		}
 
 		@Override
@@ -85,6 +96,10 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 			setListAdapter(new ArrayAdapter<Evento>(ListaEventos.this,
 					android.R.layout.simple_list_item_1, eventos));
 			progress.dismiss();
+			if(!retrive) {
+				TextView tv = (TextView) findViewById(android.R.id.empty);
+				tv.setText("Ocorreu um erro ao buscar os eventos.");
+			}
 		}
 	}
 }

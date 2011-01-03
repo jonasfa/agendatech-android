@@ -33,15 +33,7 @@ public class Sincronismo {
 		InputStream is = null;
 		StringBuffer sb = new StringBuffer();
 		try {
-			try {
-				response = httpclient.execute(httpget);
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			response = httpclient.execute(httpget);
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
 				is = entity.getContent();
@@ -50,10 +42,13 @@ public class Sincronismo {
 					sb.append(s.next());
 				}
 			}
-		} catch (IllegalStateException e) {
+		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {

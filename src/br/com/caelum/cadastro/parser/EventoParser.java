@@ -20,14 +20,10 @@ public class EventoParser {
 		this.eventosJSON = new Sincronismo().buscaEventos();
 	}
 
-	public List<Evento> parse() {
+	public List<Evento> parse() throws JSONException {
 		ArrayList<Evento> eventos = new ArrayList<Evento>();
 
-		try {
-			j = new JSONArray(eventosJSON);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		j = new JSONArray(eventosJSON);
 
 		for (int i = 0; i < j.length(); i++) {
 
