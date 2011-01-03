@@ -32,10 +32,12 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 		setContentView(R.layout.lista);
 
 		getListView().setOnItemLongClickListener(this);
-		
-		// para a mensagem não ser exibida enquanto a lista é carregada
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
 		findViewById(android.R.id.empty).setVisibility(View.GONE);
-
 		new CarregarListaTask().execute();
 	}
 	
