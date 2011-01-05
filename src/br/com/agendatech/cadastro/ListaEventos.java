@@ -44,14 +44,14 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id) {
 		Toast.makeText(ListaEventos.this,
-				"Aguarde pr뾶imas vers쌷s do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
+				"Aguarde pr처ximas vers천es do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
 				.show();
 	}
 	
 	@Override
 	public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
 		Toast.makeText(ListaEventos.this,
-				"Aguarde pr뾶imas vers쌷s do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
+				"Aguarde pr처ximas vers천es do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
 				.show();
 		return true;
 	}
