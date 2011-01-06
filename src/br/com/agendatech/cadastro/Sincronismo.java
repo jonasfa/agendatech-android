@@ -1,7 +1,9 @@
 package br.com.agendatech.cadastro;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.Scanner;
 
@@ -35,11 +37,16 @@ public class Sincronismo {
 		try {
 			response = httpclient.execute(httpget);
 			HttpEntity entity = response.getEntity();
-			if (entity != null) {
+
+			if (entity != null) {				
 				is = entity.getContent();
-				Scanner s = new Scanner(is);
-				while (s.hasNext()) {
-					sb.append(s.next());
+				
+				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+
+				String line = null;
+
+				while ((line = bufferedReader.readLine()) != null) {
+					sb.append(line + "\n");
 				}
 			}
 		} catch (ClientProtocolException e) {
