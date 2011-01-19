@@ -42,16 +42,12 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 	
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id) {
-		Toast.makeText(ListaEventos.this,
-				"Aguarde pr—ximas vers›es do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(ListaEventos.this, getString(R.string.detalhe_evento_proxima_versao) , Toast.LENGTH_LONG).show();
 	}
 	
 	@Override
 	public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-		Toast.makeText(ListaEventos.this,
-				"Aguarde pr—ximas vers›es do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(ListaEventos.this, getString(R.string.detalhe_evento_proxima_versao) , Toast.LENGTH_LONG).show();
 		return true;
 	}
 
@@ -80,8 +76,10 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 		@Override
 		protected void onPreExecute() {
-			progress = ProgressDialog.show(ListaEventos.this, "Aguarde...",
-					"Carregando lista de eventos...", true);
+			progress = ProgressDialog.show(	ListaEventos.this, 
+											getString(R.string.aguarde),
+											getString(R.string.carregando_eventos), 
+											true );
 		}
 
 		@Override
@@ -97,12 +95,11 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 		@Override
 		protected void onPostExecute(List<Evento> eventos) {
-			setListAdapter(new ArrayAdapter<Evento>(ListaEventos.this,
-					android.R.layout.simple_list_item_1, eventos));
+			setListAdapter(new ArrayAdapter<Evento>(ListaEventos.this, android.R.layout.simple_list_item_1, eventos));
 			progress.dismiss();
 			if(!retrive) {
 				TextView tv = (TextView) findViewById(android.R.id.empty);
-				tv.setText("Ocorreu um erro ao buscar os eventos.");
+				tv.setText(getString(R.string.erro_buscar_evento));
 			}
 		}
 	}

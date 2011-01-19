@@ -3,4 +3,8 @@
     <string name="app_name">Agendatech</string>
     <string name="empty_list">Não há nenhum evento cadastrado.\nPressione menu para cadastrar um novo evento.</string>
 <string name="novo_evento">Cadastrar Evento</string>
+<string name="erro_buscar_evento">Ocorreu um erro ao buscar os eventos.</string>
+<string name="aguarde">Aguarde...</string>
+<string name="carregando_eventos">Carregando lista de eventos...</string>
+<string name="detalhe_evento_proxima_versao">Aguarde próximas versões do agendatech para detalhes do evento.</string>
 </resources>
