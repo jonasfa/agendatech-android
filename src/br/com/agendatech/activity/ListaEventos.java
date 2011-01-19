@@ -1,4 +1,4 @@
-package br.com.agendatech.cadastro;
+package br.com.agendatech.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
-import br.com.caelum.cadastro.modelo.Evento;
-import br.com.caelum.cadastro.parser.EventoParser;
+import br.com.agendatech.modelo.Evento;
+import br.com.agendatech.servico.EventoParser;
 
 public class ListaEventos extends ListActivity implements OnItemLongClickListener {
 	
