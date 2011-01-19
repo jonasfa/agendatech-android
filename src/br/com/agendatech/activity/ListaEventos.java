@@ -28,7 +28,7 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.lista);
+		setContentView(R.layout.lista_eventos);
 
 		getListView().setOnItemLongClickListener(this);
 	}
