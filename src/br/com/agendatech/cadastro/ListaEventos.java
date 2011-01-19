@@ -11,21 +11,20 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemLongClickListener;
 import br.com.caelum.cadastro.modelo.Evento;
 import br.com.caelum.cadastro.parser.EventoParser;
 
 public class ListaEventos extends ListActivity implements OnItemLongClickListener {
-	private static final int MENU_NOVO = 0;
-
-	/** Called when the activity is first created. */
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,18 +57,21 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, MENU_NOVO, 0, "Cadastrar Evento").setIcon(R.drawable.mais);
-		return true;
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.eventos, menu);
+	    return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == MENU_NOVO) {
+		switch (item.getItemId()) {
+		case R.menu_eventos.botao_novo:
 			startActivity(new Intent(this, Formulario.class));
-			return true;
+			break;
+		default:
+			break;
 		}
-
-		return false;
+		return true;
 	}
 	
 	private class CarregarListaTask extends AsyncTask<Object, Object, List<Evento>> {

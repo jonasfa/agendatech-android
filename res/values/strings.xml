@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Agendatech</string>
     <string name="empty_list">Não há nenhum evento cadastrado.\nPressione menu para cadastrar um novo evento.</string>
+<string name="novo_evento">Cadastrar Evento</string>
 </resources>

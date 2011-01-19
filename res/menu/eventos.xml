@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item 
+		android:id="@+menu_eventos/botao_novo"
+		android:icon="@drawable/mais"
+		android:title="@string/novo_evento" />
+</menu>
