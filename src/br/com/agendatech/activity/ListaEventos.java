@@ -1,4 +1,4 @@
-package br.com.agendatech.cadastro;
+package br.com.agendatech.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,25 +11,24 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import br.com.caelum.cadastro.modelo.Evento;
-import br.com.caelum.cadastro.parser.EventoParser;
+import android.widget.AdapterView.OnItemLongClickListener;
+import br.com.agendatech.modelo.Evento;
+import br.com.agendatech.servico.EventoParser;
 
 public class ListaEventos extends ListActivity implements OnItemLongClickListener {
-	private static final int MENU_NOVO = 0;
-
-	/** Called when the activity is first created. */
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.lista);
+		setContentView(R.layout.lista_eventos);
 
 		getListView().setOnItemLongClickListener(this);
 	}
@@ -43,33 +42,32 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 	
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id) {
-		Toast.makeText(ListaEventos.this,
-				"Aguarde próximas versões do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(ListaEventos.this, getString(R.string.detalhe_evento_proxima_versao) , Toast.LENGTH_LONG).show();
 	}
 	
 	@Override
 	public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-		Toast.makeText(ListaEventos.this,
-				"Aguarde próximas versões do agendatech para detalhes do evento." , Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(ListaEventos.this, getString(R.string.detalhe_evento_proxima_versao) , Toast.LENGTH_LONG).show();
 		return true;
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, MENU_NOVO, 0, "Cadastrar Evento").setIcon(R.drawable.mais);
-		return true;
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.eventos, menu);
+	    return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == MENU_NOVO) {
+		switch (item.getItemId()) {
+		case R.menu_eventos.botao_novo:
 			startActivity(new Intent(this, Formulario.class));
-			return true;
+			break;
+		default:
+			break;
 		}
-
-		return false;
+		return true;
 	}
 	
 	private class CarregarListaTask extends AsyncTask<Object, Object, List<Evento>> {
@@ -78,8 +76,10 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 		@Override
 		protected void onPreExecute() {
-			progress = ProgressDialog.show(ListaEventos.this, "Aguarde...",
-					"Carregando lista de eventos...", true);
+			progress = ProgressDialog.show(	ListaEventos.this, 
+											getString(R.string.aguarde),
+											getString(R.string.carregando_eventos), 
+											true );
 		}
 
 		@Override
@@ -95,12 +95,11 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 		@Override
 		protected void onPostExecute(List<Evento> eventos) {
-			setListAdapter(new ArrayAdapter<Evento>(ListaEventos.this,
-					android.R.layout.simple_list_item_1, eventos));
+			setListAdapter(new ArrayAdapter<Evento>(ListaEventos.this, android.R.layout.simple_list_item_1, eventos));
 			progress.dismiss();
 			if(!retrive) {
 				TextView tv = (TextView) findViewById(android.R.id.empty);
-				tv.setText("Ocorreu um erro ao buscar os eventos.");
+				tv.setText(getString(R.string.erro_buscar_evento));
 			}
 		}
 	}

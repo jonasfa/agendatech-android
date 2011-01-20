@@ -1,4 +1,4 @@
-package br.com.agendatech.cadastro;
+package br.com.agendatech.servico;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,10 +14,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.app.ProgressDialog;
 import android.util.Log;
-import android.widget.Toast;
-import br.com.caelum.cadastro.modelo.Evento;
+import br.com.agendatech.modelo.Evento;
 
 public class Sincronismo {
 
@@ -40,11 +38,8 @@ public class Sincronismo {
 
 			if (entity != null) {				
 				is = entity.getContent();
-				
 				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
-
 				String line = null;
-
 				while ((line = bufferedReader.readLine()) != null) {
 					sb.append(line + "\n");
 				}

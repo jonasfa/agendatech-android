@@ -1,4 +1,4 @@
-package br.com.agendatech.cadastro;
+package br.com.agendatech.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-import br.com.caelum.cadastro.modelo.Evento;
+import br.com.agendatech.modelo.Evento;
+import br.com.agendatech.servico.Sincronismo;
 
 public class Formulario extends Activity{
 	@Override

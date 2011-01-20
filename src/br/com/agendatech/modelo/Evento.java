@@ -1,4 +1,4 @@
-package br.com.caelum.cadastro.modelo;
+package br.com.agendatech.modelo;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
