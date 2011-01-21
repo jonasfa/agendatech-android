@@ -1,4 +1,4 @@
-package br.com.agendatech.activity;
+package br.com.agendatech.cadastro;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import br.com.agendatech.cadastro.R;
 import br.com.agendatech.modelo.Evento;
 import br.com.agendatech.servico.EventoParser;
 
