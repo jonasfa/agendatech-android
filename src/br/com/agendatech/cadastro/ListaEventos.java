@@ -1,9 +1,5 @@
 package br.com.agendatech.cadastro;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,27 +7,18 @@ import org.json.JSONException;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import br.com.agendatech.cadastro.R;
+import android.widget.AdapterView.OnItemLongClickListener;
 import br.com.agendatech.modelo.Evento;
 import br.com.agendatech.servico.EventoParser;
 
@@ -107,48 +94,7 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 		@Override
 		protected void onPostExecute(List<Evento> eventos) {
-			LayoutInflater li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-			final List<View> views = new ArrayList<View>();	
-			for (int i = 0; i < eventos.size() ; i++) {
-				View view = li.inflate(R.layout.item, null);
-				LinearLayout ll = (LinearLayout)view.findViewById(R.id.linha);
-				
-				Evento evento = eventos.get(i);
-				
-				if(i%2 == 0){
-					ll.setBackgroundColor(0xFFf9f9f9);
-					
-				}else{
-					ll.setBackgroundColor(0xFFe6e6e6);
-				}
-					
-				
-				
-				TextView texto = (TextView) view.findViewById(R.id.texto);
-				texto.setText(evento.getNome() + "\n" + evento.getData());
-				ImageView iv = (ImageView) view.findViewById(R.id.logo);
-				try {
-					Bitmap b = BitmapFactory.decodeStream(new URL(evento.getLogo()).openStream());
-					iv.setImageBitmap(b);
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				views.add(view);
- 			}
-			
-			
-			setListAdapter(new ArrayAdapter<Evento>(ListaEventos.this, android.R.layout.simple_list_item_1, eventos){
-				@Override
-				public View getView(int position, View convertView,
-						ViewGroup parent) {
-					return views.get(position);
-				}
-			});
+			setListAdapter(new ListaEventosAdapter(ListaEventos.this, R.layout.item, eventos));
 			progress.dismiss();
 			if(!retrive) {
 				TextView tv = (TextView) findViewById(android.R.id.empty);
@@ -156,4 +102,5 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 			}
 		}
 	}
+	
 }
