@@ -45,6 +45,8 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 		getListView().setOnItemLongClickListener(this);
 	}
 	
+	
+	
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -55,6 +57,7 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 	@Override
 	public void onListItemClick(ListView listView, View view, int position, long id) {
 		Toast.makeText(ListaEventos.this, getString(R.string.detalhe_evento_proxima_versao) , Toast.LENGTH_LONG).show();
+		//startActivity(new Intent(this, Formulario.class));
 	}
 	
 	@Override
