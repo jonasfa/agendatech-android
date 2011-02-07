@@ -3,6 +3,8 @@ package br.com.agendatech.modelo;
 import org.json.JSONException;
 import org.json.JSONStringer;
 
+import android.graphics.Bitmap;
+
 public class Evento {
 
 	private String nome;
@@ -12,6 +14,8 @@ public class Evento {
 	private String descricao;
 	private String site;
 	private String logo;
+	private Bitmap bitmap;
+	private String niceURL;
 
 	public String getLogo() {
 		return logo;
@@ -81,6 +85,22 @@ public class Evento {
 				.key("descricao").value(site).key("descricao").value(site)
 				.endObject();
 		return j.toString();
+	}
+
+	public void setBitmap(Bitmap bitmap) {
+		this.bitmap = bitmap;
+	}
+
+	public Bitmap getBitmap() {
+		return bitmap;
+	}
+
+	public void setNiceURL(String niceURL) {
+		this.niceURL = niceURL;
+	}
+
+	public String getNiceURL() {
+		return niceURL;
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.json.JSONException;
 
-import android.app.ListActivity;
+import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,44 +15,35 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 import br.com.agendatech.modelo.Evento;
 import br.com.agendatech.servico.EventoParser;
 
-public class ListaEventos extends ListActivity implements OnItemLongClickListener {
+public class ListaEventos extends ExpandableListActivity implements OnItemLongClickListener {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lista_eventos);
 
-		getListView().setOnItemLongClickListener(this);
+		getExpandableListView().setOnItemLongClickListener(this);
+		
+		getExpandableListView().setGroupIndicator(null) ;
+        
+        ImageView imageView = new ImageView(this);
+		imageView.setImageResource(R.drawable.logo) ;
+		getExpandableListView().addHeaderView(imageView);
+		
 	}
-	
-	
 	
 	@Override
 	protected void onStart() {
 		super.onStart();
-		findViewById(android.R.id.empty).setVisibility(View.GONE);
 		new CarregarListaTask().execute();
 	}
 	
-	@Override
-	public void onListItemClick(ListView listView, View view, int position, long id) {
-		Toast.makeText(ListaEventos.this, getString(R.string.detalhe_evento_proxima_versao) , Toast.LENGTH_LONG).show();
-		//startActivity(new Intent(this, Formulario.class));
-	}
-	
-	@Override
-	public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-		Toast.makeText(ListaEventos.this, getString(R.string.detalhe_evento_proxima_versao) , Toast.LENGTH_LONG).show();
-		return true;
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -81,7 +72,7 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 			progress = ProgressDialog.show(	ListaEventos.this, 
 											getString(R.string.aguarde),
 											getString(R.string.carregando_eventos), 
-											true );
+											true , true);
 		}
 
 		@Override
@@ -97,13 +88,19 @@ public class ListaEventos extends ListActivity implements OnItemLongClickListene
 
 		@Override
 		protected void onPostExecute(List<Evento> eventos) {
-			setListAdapter(new ListaEventosAdapter(ListaEventos.this, R.layout.item, eventos));
+			setListAdapter(new ListaEventosAdapter(ListaEventos.this, eventos));
 			progress.dismiss();
 			if(!retrive) {
 				TextView tv = (TextView) findViewById(android.R.id.empty);
 				tv.setText(getString(R.string.erro_buscar_evento));
 			}
 		}
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+		return false;
 	}
 	
 }
