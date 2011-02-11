@@ -8,6 +8,7 @@
 	android:id="@+id/fundo_pai">
 	<ImageView
 		android:id="@+id/logo"
+		android:src="@drawable/ic_launcher"
 		android:layout_width="100px"
 		android:layout_height="100px"
 	/>
@@ -20,7 +21,7 @@
 	>
 		<TextView
 			android:id="@+id/nome_evento"
-			android:textColor="#000000"
+			android:textColor="#444444"
 			android:textSize="20dp"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

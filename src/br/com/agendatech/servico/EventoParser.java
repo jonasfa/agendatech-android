@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import br.com.agendatech.cadastro.DrawableManager;
 import br.com.agendatech.modelo.Evento;
 
 public class EventoParser {
@@ -42,6 +43,9 @@ public class EventoParser {
 
 				evento.setNome(new JSONObject(nomeJ.getString("evento"))
 						.getString("nome"));
+				
+				evento.setDescricao(new JSONObject(nomeJ.getString("evento"))
+				.getString("descricao"));
 
 				String data = new JSONObject(nomeJ.getString("evento"))
 						.getString("data");
@@ -63,17 +67,17 @@ public class EventoParser {
 				
 				evento.setLogo("http://s3.amazonaws.com/agendatech_logos/thumb/" + URLEncoder.encode(new JSONObject(nomeJ.getString("evento"))
 				.getString("logo_file_name")));
-				
-				InputStream is = null ;
-				try {
-					is = new URL(evento.getLogo()).openStream();
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				Bitmap bm = BitmapFactory.decodeStream(is) ;
-				evento.setBitmap(bm) ;
+	
+//				InputStream is = null ;
+//				try {
+//					is = new URL(evento.getLogo()).openStream();
+//				} catch (MalformedURLException e) {
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//				Bitmap bm = BitmapFactory.decodeStream(is) ;
+//				evento.setBitmap(bm) ;
 				
 				eventos.add(evento);
 

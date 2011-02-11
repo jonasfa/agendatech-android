@@ -13,35 +13,31 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import br.com.agendatech.modelo.Evento;
 import br.com.agendatech.servico.EventoParser;
 
-public class ListaEventos extends ExpandableListActivity implements OnItemLongClickListener {
+public class ListaEventos extends ExpandableListActivity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lista_eventos);
 
-		getExpandableListView().setOnItemLongClickListener(this);
-		
 		getExpandableListView().setGroupIndicator(null) ;
         
         ImageView imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.logo) ;
 		getExpandableListView().addHeaderView(imageView);
 		
+		new CarregarListaTask().execute();
+		
 	}
 	
 	@Override
 	protected void onStart() {
 		super.onStart();
-		new CarregarListaTask().execute();
 	}
 	
 	@Override
@@ -87,20 +83,18 @@ public class ListaEventos extends ExpandableListActivity implements OnItemLongCl
 		}
 
 		@Override
-		protected void onPostExecute(List<Evento> eventos) {
-			setListAdapter(new ListaEventosAdapter(ListaEventos.this, eventos));
+		protected void onPostExecute(final List<Evento> eventos) {
+
+			final ListaEventosAdapter listaEventosAdapter = new ListaEventosAdapter(ListaEventos.this, eventos);
+			setListAdapter(listaEventosAdapter);
+			
 			progress.dismiss();
-			if(!retrive) {
-				TextView tv = (TextView) findViewById(android.R.id.empty);
-				tv.setText(getString(R.string.erro_buscar_evento));
-			}
+
+//			if(!retrive) {
+//				TextView tv = (TextView) findViewById(android.R.id.empty);
+//				tv.setText(getString(R.string.erro_buscar_evento));
+//			}
 		}
 	}
 
-	@Override
-	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
-		return false;
-	}
-	
 }
