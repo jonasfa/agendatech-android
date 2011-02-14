@@ -7,12 +7,19 @@
 	android:background="#E6E6E6"
 	android:id="@+id/fundo_filho">
 	<TextView
-		android:id="@+id/titulo"
+		android:id="@+id/quemVai"
 		android:textColor="#000000"
-		android:text="Titulo"
+		android:text="Quem Vai?"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 	/>
+	<Gallery
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:id="@+id/galeria"
+		android:spacing="10dp"
+	/>	
 	<TextView
 		android:id="@+id/cidade"
 		android:textColor="#000000"

@@ -19,10 +19,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import br.com.agendatech.modelo.Evento;
 
 public class ListaEventosAdapter extends BaseExpandableListAdapter {
@@ -59,8 +64,46 @@ public class ListaEventosAdapter extends BaseExpandableListAdapter {
 		final Evento evento = eventos.get(groupPosition);
 
 		View filho = inflater.inflate(R.layout.filho, null);
-		TextView titulo = (TextView) filho.findViewById(R.id.titulo);
-		titulo.setText(evento.getNome());
+		
+		Gallery grid = (Gallery) filho.findViewById(R.id.galeria) ;
+		
+		grid.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Toast.makeText(context, "Indo pro site", Toast.LENGTH_LONG).show() ;
+			}
+		}) ;
+		
+		grid.setAdapter(new BaseAdapter() {
+			
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				ImageView view = new ImageView(context) ;
+
+				Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher) ;
+				bm = Bitmap.createScaledBitmap(bm, 40, 40, true) ;
+				view.setImageBitmap(bm) ;
+				
+				return view;
+			}
+			
+			@Override
+			public long getItemId(int position) {
+				return 0;
+			}
+			
+			@Override
+			public Object getItem(int position) {
+				return null;
+			}
+			
+			@Override
+			public int getCount() {
+				return 5;
+			}
+		}) ;
+		
 		TextView cidade = (TextView) filho.findViewById(R.id.cidade);
 		cidade.setText(evento.getEstado());
 		WebView descricao = (WebView) filho.findViewById(R.id.descricao);

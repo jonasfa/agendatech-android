@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.TextView;
 import br.com.agendatech.modelo.Evento;
 import br.com.agendatech.servico.EventoParser;
 
@@ -61,8 +60,6 @@ public class ListaEventos extends ExpandableListActivity {
 	
 	private class CarregarListaTask extends AsyncTask<Object, Object, List<Evento>> {
 		ProgressDialog progress;
-		private boolean retrive = false;
-
 		@Override
 		protected void onPreExecute() {
 			progress = ProgressDialog.show(	ListaEventos.this, 
@@ -74,10 +71,8 @@ public class ListaEventos extends ExpandableListActivity {
 		@Override
 		protected List<Evento> doInBackground(Object... params) {
 			try {
-				retrive = true;
 				return new EventoParser().parse();
 			} catch (JSONException e) {
-				retrive = false;
 				return new ArrayList<Evento>();
 			}
 		}
@@ -90,10 +85,6 @@ public class ListaEventos extends ExpandableListActivity {
 			
 			progress.dismiss();
 
-//			if(!retrive) {
-//				TextView tv = (TextView) findViewById(android.R.id.empty);
-//				tv.setText(getString(R.string.erro_buscar_evento));
-//			}
 		}
 	}
 
