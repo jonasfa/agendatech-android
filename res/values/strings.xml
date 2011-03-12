@@ -6,5 +6,6 @@
 <string name="erro_buscar_evento">Ocorreu um erro ao buscar os eventos.</string>
 <string name="aguarde">Aguarde...</string>
 <string name="carregando_eventos">Carregando lista de eventos...</string>
+<string name="carregando_grupos">Carregando lista de grupos...</string>
 <string name="detalhe_evento_proxima_versao">Aguarde próximas versões do agendatech para detalhes do evento.</string>
 </resources>

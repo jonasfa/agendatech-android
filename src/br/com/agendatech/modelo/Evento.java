@@ -1,11 +1,13 @@
 package br.com.agendatech.modelo;
 
+import java.io.Serializable;
+
 import org.json.JSONException;
 import org.json.JSONStringer;
 
 import android.graphics.Bitmap;
 
-public class Evento {
+public class Evento implements Serializable{
 
 	private String nome;
 	private String estado;
@@ -16,6 +18,15 @@ public class Evento {
 	private String logo;
 	private Bitmap bitmap;
 	private String niceURL;
+	private Integer quantidadeDeParticipantes;
+
+	public Integer getQuantidadeDeParticipantes() {
+		return quantidadeDeParticipantes;
+	}
+
+	public void setQuantidadeDeParticipantes(Integer quantidadeDeParticipantes) {
+		this.quantidadeDeParticipantes = quantidadeDeParticipantes;
+	}
 
 	public String getLogo() {
 		return logo;
@@ -75,7 +86,7 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		return data + " - " + nome;
+		return nome;
 	}
 
 	public String toJSON() throws JSONException {

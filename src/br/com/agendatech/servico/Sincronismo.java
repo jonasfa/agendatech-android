@@ -19,14 +19,16 @@ import br.com.agendatech.modelo.Evento;
 
 public class Sincronismo {
 
-//	private String novoEvento = "http://10.0.2.2:3000/mobile/novo_evento?";
-//	private String buscaEventos = "http://10.0.2.2:3000/mobile/eventos";
+	// private String novoEvento = "http://10.0.2.2:3000/mobile/novo_evento?";
+	// private String buscaEventos = "http://10.0.2.2:3000/mobile/eventos";
 
 	private String novoEvento = "http://www.agendatech.com.br/mobile/novo_evento?";
 	private String buscaEventos = "http://www.agendatech.com.br/mobile/eventos";
 	
+	private String buscaGrupos = "http://www.agendatech.com.br/mobile/grupos";
+
 	public String buscaEventos() {
-				
+
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(buscaEventos);
 		HttpResponse response = null;
@@ -36,9 +38,10 @@ public class Sincronismo {
 			response = httpclient.execute(httpget);
 			HttpEntity entity = response.getEntity();
 
-			if (entity != null) {				
+			if (entity != null) {
 				is = entity.getContent();
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+				BufferedReader bufferedReader = new BufferedReader(
+						new InputStreamReader(is));
 				String line = null;
 				while ((line = bufferedReader.readLine()) != null) {
 					sb.append(line + "\n");
@@ -71,11 +74,12 @@ public class Sincronismo {
 
 		HttpClient httpclient = new DefaultHttpClient();
 
-		String encode = novoEvento
-				+ "nome=" + URLEncoder.encode(evento.getNome()) + "&descricao="
-						+ URLEncoder.encode(evento.getDescricao()) + "&estado="
-						+ URLEncoder.encode(evento.getEstado()) + "&site=" + URLEncoder.encode(evento.getSite())
-						+ "&data=" + URLEncoder.encode(evento.getData());
+		String encode = novoEvento + "nome="
+				+ URLEncoder.encode(evento.getNome()) + "&descricao="
+				+ URLEncoder.encode(evento.getDescricao()) + "&estado="
+				+ URLEncoder.encode(evento.getEstado()) + "&site="
+				+ URLEncoder.encode(evento.getSite()) + "&data="
+				+ URLEncoder.encode(evento.getData());
 
 		Log.i("envio", encode);
 		HttpGet httpget = new HttpGet(encode);
@@ -96,6 +100,48 @@ public class Sincronismo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (is != null)
+				try {
+					is.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+
+		return sb.toString();
+	}
+
+	public String buscaGrupos() {
+
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpGet httpget = new HttpGet(buscaGrupos);
+		HttpResponse response = null;
+		InputStream is = null;
+		StringBuffer sb = new StringBuffer();
+		try {
+			response = httpclient.execute(httpget);
+			HttpEntity entity = response.getEntity();
+
+			if (entity != null) {
+				is = entity.getContent();
+				BufferedReader bufferedReader = new BufferedReader(
+						new InputStreamReader(is));
+				String line = null;
+				while ((line = bufferedReader.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+			}
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {

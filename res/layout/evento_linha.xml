@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="horizontal"
+	android:id="@+id/fundo_pai">
+	<ImageView
+		android:id="@+id/logo"
+		android:src="@drawable/ic_launcher"
+		android:layout_width="40px"
+		android:layout_height="40px"
+		android:paddingTop="5dp"
+		android:paddingLeft="5dp"
+	/>
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:paddingLeft="10dp"
+	>
+		<TextView
+			android:id="@+id/nome_evento"
+			android:textSize="16dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
+			android:paddingTop="5dp"
+		/>
+		<TextView
+			android:id="@+id/data_cidade_evento"
+			android:textSize="14dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingBottom="5dp"
+		/>
+	</LinearLayout>
+</LinearLayout>

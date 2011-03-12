@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.json.JSONException;
 
-import android.app.ExpandableListActivity;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,22 +13,34 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import br.com.agendatech.modelo.Evento;
 import br.com.agendatech.servico.EventoParser;
 
-public class ListaEventos extends ExpandableListActivity {
+public class ListaEventos extends ListActivity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.lista_eventos);
+		
+		((ListView)findViewById(android.R.id.list)).setOnItemClickListener(new OnItemClickListener() {
 
-		getExpandableListView().setGroupIndicator(null) ;
-        
-        ImageView imageView = new ImageView(this);
-		imageView.setImageResource(R.drawable.logo) ;
-		getExpandableListView().addHeaderView(imageView);
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long id) {
+				Intent intent = new Intent(ListaEventos.this, EventoActivity.class);
+				intent.putExtra("Evento", ((Evento)getListAdapter().getItem((int) id)));
+				startActivity(intent);
+				
+			}
+			
+			
+		});
 		
 		new CarregarListaTask().execute();
 		

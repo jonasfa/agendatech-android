@@ -10,18 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
-import br.com.agendatech.modelo.Evento;
+import br.com.agendatech.modelo.Grupo;
 
-public class ListaEventosAdapter extends ArrayAdapter<Evento> {
+public class ListaGruposAdapter extends ArrayAdapter<Grupo>{
 
-	public ListaEventosAdapter(Context context, List<Evento> eventos) {
-		super(context, R.layout.evento_linha, R.id.nome_evento, eventos);
+	public ListaGruposAdapter(Context context, List<Grupo> grupos) {
+		super(context, R.layout.grupo_linha, R.id.nome_grupo, grupos);
 	}
+	
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final Evento evento = getItem(position);
+		final Grupo grupo = getItem(position);
 
 		View pai = super.getView(position, convertView, parent);
 
@@ -30,13 +30,13 @@ public class ListaEventosAdapter extends ArrayAdapter<Evento> {
 		logo.setImageResource(R.drawable.ic_launcher_bw);
 
 		AsyncTask<String, ProgressDialog, Bitmap> imageLoad = new BitmapGenerator(logo);
-		imageLoad.execute(evento.getLogo());
+//		imageLoad.execute(grupo.getLogo());
 
-		TextView data = (TextView) pai.findViewById(R.id.data_cidade_evento);
-		data.setText(evento.getData() + "-" +evento.getEstado());
+//		TextView data = (TextView) pai.findViewById(R.id.data_cidade_evento);
+//		data.setText(grupo.getData() + "-" +grupo.getEstado());
 
 		return pai;
 	}
 
-
+	
 }
